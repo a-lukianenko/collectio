@@ -1,13 +1,18 @@
 const express = require("express");
 const app = express();
 
-require("dotenv").config();
+const env = require("dotenv").config();
+if (env.error) throw result.error;
 
-const PORT = process.env.PORT;
-const HOST = process.env.HOST;
+const { PORT, HOST } = env.parsed;
 
 app.get("/:name", (req, res) => {
   res.send(`Hello, ${req.params.name}!`);
+});
+
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send("Internal error. Please, try again later.");
 });
 
 app.listen(PORT, HOST, () => {
