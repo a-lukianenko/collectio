@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import TextField from "@material-ui/core/TextField";
+import PropTypes from "prop-types";
+
 import Input from "@material-ui/core/Input";
 
 import Button from "@material-ui/core/Button";
@@ -21,6 +22,8 @@ const Profile = ({ handleProfileName }) => {
 
   const [profile, setProfile] = useState(initialProfile);
   const classes = useStyles();
+
+  if (profile.name === "none") throw new Error("Profile name cannot be none");
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -69,3 +72,7 @@ const Profile = ({ handleProfileName }) => {
 };
 
 export default Profile;
+
+Profile.propTypes = {
+  handleProfileName: PropTypes.func.isRequired,
+};

@@ -1,4 +1,6 @@
 import React from "react";
+import PropTypes from "prop-types";
+
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -40,6 +42,15 @@ const Header = ({ handleClick, profileName }) => {
       </AppBar>
     </div>
   );
+};
+
+Header.propTypes = {
+  handleClick: PropTypes.func.isRequired,
+  profileName: PropTypes.string,
+};
+
+Header.defaultProps = {
+  profileName: "",
 };
 
 export default Header;

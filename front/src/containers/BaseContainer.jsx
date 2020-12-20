@@ -10,6 +10,9 @@ import Content from "../components/Base/Content/Content";
 import Posts from "../components/Posts/Posts";
 import AddPost from "../components/AddPost/AddPost";
 import Profile from "../components/Profile/Profile";
+import CatchProfileNameError from "../components/ErrorBoundaries/CatchProfileNameError";
+
+import userData from "../userData";
 
 const BaseContainer = () => {
   const [content, setContent] = useState(<HomePage />);
@@ -22,10 +25,15 @@ const BaseContainer = () => {
   function handleClick(e) {
     const { innerText } = e.target;
 
-    if (innerText.startsWith("POSTS")) return setContent(<Posts />);
+    if (innerText.startsWith("POSTS"))
+      return setContent(<Posts userData={userData} />);
     if (innerText.startsWith("ADD POST")) return setContent(<AddPost />);
     if (innerText.startsWith("PROFILE"))
-      return setContent(<Profile handleProfileName={handleProfileName} />);
+      return setContent(
+        <CatchProfileNameError>
+          <Profile handleProfileName={handleProfileName} />
+        </CatchProfileNameError>
+      );
   }
 
   return (
