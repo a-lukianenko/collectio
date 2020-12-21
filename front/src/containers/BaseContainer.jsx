@@ -25,10 +25,17 @@ const BaseContainer = () => {
   function handleClick(e) {
     const { innerText } = e.target;
 
-    if (innerText.startsWith("POSTS"))
+    const components = {
+      posts: "POSTS",
+      addPost: "ADD_POST",
+      profile: "PROFILE",
+    };
+
+    if (innerText.startsWith(components.posts))
       return setContent(<Posts userData={userData} />);
-    if (innerText.startsWith("ADD POST")) return setContent(<AddPost />);
-    if (innerText.startsWith("PROFILE"))
+    if (innerText.startsWith(components.addPost))
+      return setContent(<AddPost />);
+    if (innerText.startsWith(components.profile))
       return setContent(
         <CatchProfileNameError>
           <Profile handleProfileName={handleProfileName} />

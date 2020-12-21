@@ -23,7 +23,7 @@ const Header = ({ handleClick, profileName }) => {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
+    <header className={classes.root}>
       <AppBar position='static'>
         <Toolbar>
           <Typography variant='h6' className={classes.title}>
@@ -36,11 +36,11 @@ const Header = ({ handleClick, profileName }) => {
             Add post
           </Button>
           <Button color='inherit' onClick={handleClick}>
-            {"Profile" + profileName}
+            {`Profile ${profileName}`}
           </Button>
         </Toolbar>
       </AppBar>
-    </div>
+    </header>
   );
 };
 
